@@ -4,17 +4,12 @@
 int a[MAX_LENGTH];
 int N;
 
-//initial array a
-void initA() {
-
+int main() {
+    
+    //initial array a
     for (int i = 0; i < MAX_LENGTH; i++) {
         a[i] = 0;
     }
-}
-
-int main() {
-    
-    initA();
 
     //fetch inputs
     scanf("%d", &N);
