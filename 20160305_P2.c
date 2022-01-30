@@ -28,6 +28,7 @@ void init2DArray(int arr[][MAX_LENGTH]) {
 //initial all the array
 void init() {
 
+    R = C = M = 0;
     initArray(operation);
     init2DArray(a);
     init2DArray(b);
@@ -38,11 +39,13 @@ void print2DArray(int arr[][MAX_LENGTH]) {
 
     for (int i = 0; i < R; i++) {
         for (int j = 0; j < C; j++) {
-            printf("%d ", arr[i][j]);
+            printf("%d", arr[i][j]);
+            if (j != C-1) {
+                printf(" ");
+            }
         }
         printf("\n");
     }
-    printf("\n");
 }
 
 //print two dimensional array a and b
@@ -107,32 +110,36 @@ void rotate() {
 
 int main() {
 
-    init();
-
-    //fetch inputs
-    scanf("%d%d%d", &R, &C, &M);
-    for (int i = 0; i < R; i++) {
-        for (int j = 0; j < C; j++) {
-            scanf("%d", &a[i][j]);
+    while (1) {
+        init();
+        //fetch inputs
+        scanf("%d%d%d", &R, &C, &M);
+        if (!R) {
+            return 0;
         }
-    }
-    for (int i = 0; i < M; i++) {
-        scanf("%d", &operation[i]);
-    }
-
-    //iterate the operation array in reverse order
-    for (int i = M-1; i >= 0; i--) {
-        if (DEBUG) {
-            print2Array();
+        for (int i = 0; i < R; i++) {
+            for (int j = 0; j < C; j++) {
+                scanf("%d", &a[i][j]);
+            }
+        }
+        for (int i = 0; i < M; i++) {
+            scanf("%d", &operation[i]);
         }
 
-        if (operation[i]) {
-            flip();
-        } else {
-            rotate();
-        }
-    }
+        //iterate the operation array in reverse order
+        for (int i = M-1; i >= 0; i--) {
+            if (DEBUG) {
+                print2Array();
+            }
 
-    printf("%d %d\n", R, C);
-    print2DArray(a);
+            if (operation[i]) {
+                flip();
+            } else {
+                rotate();
+            }
+        }
+
+        printf("%d %d\n", R, C);
+        print2DArray(a);
+    }
 }
