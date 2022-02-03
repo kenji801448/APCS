@@ -88,9 +88,14 @@ int main() {
 
     //try S factors of each candidate
     int hasFactor = 0;
+    int first = 1;
     for (int i = 0; i < N; i++) {
         if (S % candidate[i] == 0) {
-            printf("%d ", candidate[i]);
+            if (!first) {
+                printf(" ");
+            }
+            printf("%d", candidate[i]);
+            first = 0;
             hasFactor = 1;
         }
     }
